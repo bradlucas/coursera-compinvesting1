@@ -1,11 +1,6 @@
 #!/bin/bash
 
-python ./bollinger-events-orders.py 01-01-2008 12-31-2009 20
-
-
-#!/bin/bash
-
-# ./run.sh 01-01-2008 12-31-2009 5 50000
+# python ./bollinger-events-orders.py 01-01-2008 12-31-2009 20
 
 # event_amount
 START=01-01-2008
