@@ -82,7 +82,7 @@ def event_study(df_bollinger_value):
     # Bollinger value for SPY today >= 1.0
     ldt_timestamps = df_bollinger_value.index
     ls_symbols = df_bollinger_value.columns
-    print "ls_symbols", ls_symbols
+    # print "ls_symbols", ls_symbols
 
     # Creating an empty dataframe
     df_events = copy.deepcopy(df_bollinger_value)
@@ -118,7 +118,7 @@ if __name__ == '__main__':
     symbol_list = 'sp5002012'
     index = '$SPX'
     ls_symbols = build_symbol_list(symbol_list, index)
-    print ls_symbols
+    # print ls_symbols
 
     d_data, df_closingprices = fetch_close_prices(dt_start, dt_end, ls_symbols)
 
