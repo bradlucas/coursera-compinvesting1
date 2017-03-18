@@ -2,6 +2,7 @@
 
 import copy
 import datetime as dt
+import sys
 
 import pandas as pd
 import numpy as np
@@ -103,17 +104,20 @@ def event_study(df_bollinger_value):
     return event_count, df_events
 
 
-def main():
+if __name__ == '__main__':
+    dt_start_param = sys.argv[1]
+    dt_start = dt.datetime.strptime(dt_start_param, '%m-%d-%Y')
+    dt_end_param = sys.argv[2]
+    dt_end = dt.datetime.strptime(dt_end_param, '%m-%d-%Y')
+    n_lookback = int(sys.argv[3])
 
-    # dt_start = dt.datetime.strptime(sys.argv[1], '%m-%d-%Y')
-    # dt_end = dt.datetime.strptime(sys.argv[2], '%m-%d-%Y')
-    # n_lookback = int(sys.argv[3])
+    # dt_start = dt.datetime.strptime('01-01-2008', '%m-%d-%Y')
+    # dt_end = dt.datetime.strptime('12-31-2009', '%m-%d-%Y')
+    # n_lookback = 20
 
-    dt_start = dt.datetime.strptime('01-01-2008', '%m-%d-%Y')
-    dt_end = dt.datetime.strptime('12-31-2009', '%m-%d-%Y')
-    n_lookback = 20
-
-    ls_symbols = build_symbol_list('sp5002012', "$SPX")
+    symbol_list = 'sp5002012'
+    index = '$SPX'
+    ls_symbols = build_symbol_list(symbol_list, index)
     print ls_symbols
 
     d_data, df_closingprices = fetch_close_prices(dt_start, dt_end, ls_symbols)
@@ -123,10 +127,8 @@ def main():
     event_count, df_events = event_study(df_bollinger_value)
 
     print "Events    : " + str(event_count)
-    s_filename = "01-01-2008-12-31-2009-sp5002012-bollinger-events.pdf"
+    s_filename = dt_start_param + "-" + dt_end_param + "-" + symbol_list + "-" + index + "-bollinger-events.pdf"
+
     # eventprofiler depends on d_data['close']
     ep.eventprofiler(df_events, d_data, i_lookback=20, i_lookforward=20, s_filename=s_filename, b_market_neutral=True, b_errorbars=True, s_market_sym='SPY')
 
-
-if __name__ == '__main__':
-    main()
