@@ -226,7 +226,7 @@ if __name__ == "__main__":
 # Volatility (stdev of daily returns):  0.0101467067654
 # Average Daily Return:  0.000657261102001
 # Cumulative Return:  1.16487261965
-    
+
 # python optimizer.py 2010 1 1 2010 12 31 axp hpq ibm hnz
 
 # Start Date: January 1, 2010
