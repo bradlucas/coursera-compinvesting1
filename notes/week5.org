@@ -1,0 +1,310 @@
+* Week 5
+- https://www.coursera.org/learn/computational-investing/home/week/5
+** Digging into Data
+*** Digging into Data
+- How to read an event sutdy
+- Correct answers for $5 events
+- Understsanding survivor biased dta
+- Understand actual vs adjusted historical price data
+- Methods of data sanity checking an scrubbing
+
+**** Example Event
+- Bollinger Bands
+- Price drops below -1.5 standard deviations of recent daily values
+- SPY (SP500) is above 0.25
+
+- Event happens
+- Sanity check. Drop in return per what we think
+- Goes up afterwards
+- Deviations grow (virtical bars)
+- Number of events is low. Harder to trade
+
+- How to trade
+- Buy at event
+- Hold for 7 days in this example
+
+**** 5 Dollar Events
+- Reason for the difference
+- When using today's sp500 for an old event study
+- You are using survivors
+- You are not using companies that have died
+
+
+
+***** Use data that is Survivor Bias free
+- Includes dead and live companies
+
+- Problems with symbols
+
+|------------------+------+---------+---------|
+| Mr Coffee        | JAVA | Aquired |         |
+|                  |      |         |         |
+| Sun Microsystems | SUNW | JAVA    | Aquired |
+|------------------+------+---------+---------|
+
+***** Survivor Bias Data
+- If you have this
+- Build some random portfolios and try to beat those
+
+*** Actual vs Adjusted Prices
+Actual
+The actual closing price record by the exchange on a specific date in history
+Fails to account for:
+- dividends
+- splits
+
+Adjusted
+Price that automatcially accounts for "how much you have have made if you held the stock"
+
+- Splits
+
+Example: Yahoo Data: IBM
+|--------------+--------+--------+--------+--------+------------+-----------|
+| Date         |   Open |   High |    Low |  Close | Adj Close* | Volume    |
+|--------------+--------+--------+--------+--------+------------+-----------|
+| Dec 03, 2012 | 190.76 | 191.30 | 188.36 | 189.48 |     189.48 | 3,349,600 |
+| Nov 30, 2012 | 191.75 | 192.00 | 189.50 | 190.07 |     190.07 | 4,936,400 |
+| Nov 29, 2012 | 192.75 | 192.90 | 190.20 | 191.53 |     191.53 | 4,077,900 |
+|              |        |        |        |        |            |           |
+| Jan 08, 1962 |   7.46 |   7.46 |   7.27 | 549.50 |       7.33 | 544,000   |
+| Jan 05, 1962 |   7.61 |   7.61 |   7.45 | 560.00 |       7.47 | 363,200   |
+| Jan 04, 1962 |   7.69 |   7.69 |   7.61 | 571.25 |       7.62 | 256,000   |
+| Jan 03, 1962 |   7.63 |   7.69 |   7.63 | 577.00 |       7.69 | 288,000   |
+| Jan 02, 1962 |   7.71 |   7.71 |   7.63 | 572.00 |       7.63 | 387,200   |
+|--------------+--------+--------+--------+--------+------------+-----------|
+
+1:4 Split
+Was 300. 1 share became 4 for 75 per share
+
+
+Adjusted price goes down as you go back in time
+
+- Dividends
+
+AGNC
+Pays about 1.25 dividend each year
+
+- Charted prices are actual prices and don't include the dividend payments
+
+Actual prices of a stock as it approaches it's dividend
+Climbs to th date of the dividend
+The next day it is priced lower to ofset the dividend
+Book valuel goes down by 1 dollar (example)
+
+On the date of the dividend they adjust the price previously down to relect the dividend
+
+**** Gaps In Data (NaN)
+- missing data
+
+Not a Number
+
+Pandas
+Fill back. Moving backward fill NaN with previous value
+You can fill forward as well
+
+Use fill forward first
+Show sudden jubmps don't preak early
+
+For the beginning if you need to fill you have to fill backward.
+
+**** Summary
+Know your data
+Adjusted? or Actual?
+Yahoo adjusts for splits but not dividends
+Historical download has both
+Important to know which
+
+Most cases you use adjusted close
+If you are look for an actual value ($5.00 event) then you need the actual value
+
+Fill forward, then fill back
+Daingers for filling forward are looking into the future
+
+*** Data Sanity and Scrubbing
+- Failure to adjust for splits properly
+- Orders of magnitude drops, followed by offsetting orders of magniture climbs
+  - DD 1988
+- Database updates missing signifigant chunks of data/symbols
+
+**** Why is bad data bad?
+- Automated strategies may exploit bad data then fail with real data
+- You think you may have discovered something
+
+**** How to prevent
+
+- Sanity check
+- Adjusted data
+- Scan new data for obvious drops or gains
+- 50% drop, 200% gain
+- Exact changes are usually split errors
+
+- Log of NaNs in major stocks, Dow stocks etc. Error in data fee
+- Pricess less than 0.01. Multiplier error
+- NaNs > 20 trading days. Something is wrong with the stock, potential delising
+
+- Remove or repair
+- Easier and more reliable to remove
+
+- Costly repair if you have muiltiople sources
+
+** Quiz Preparation
+- Third assignment. The Market Simulator
+*** How Next Two Reviews Fit Together
+Event Study > Generate Trades -> Market Simulator
+Have the events create orders and then assess them in a market simulator
+
+*** Specification for This Module's Review
+- For Homework 3
+- The crux of the course
+
+- Python program
+- Accept stock market orders in a csv
+- Process them
+- Then assess the portfolio which is created by processing these orders
+- Calculate 
+
+- Use this to test strategies
+
+- http://wiki.quantsoftware.org/index.php?title=CompInvesti_Homework_3
+
+- marketsim.py
+- python marketsim.py 1000000 orders.csv values.csv
+- use adjusted closing prices
+
+- analyze.py
+- python analyze.py values.csv \$SPX
+
+
+*** Suggestions on Implementation of This Module's Review
+
+** Review
+*** Quiz: Build a Market Simulator (Homework 3)
+- http://wiki.quantsoftware.org/index.php?title=CompInvesti_Homework_3
+- http://wiki.quantsoftware.org/images/a/a2/Marketsim-guidelines.pdf
+- http://wiki.quantsoftware.org/index.php?title=QSTK_Tutorial_1
+
+**** Notes
+***** Price per share for each symbol including column with cash per share (1.00)
+
+- Append the '_CASH' into the price data
+- df_close['_CASH'] = 1.0
+
+|----------+-------+-------+------|
+| Date\Sym |  AAPL | MSFT  | CASH |
+|----------+-------+-------+------|
+| 12/1     | 400.0 | 30.0  |  1.0 |
+| 12/2     | 500.0 | 50.0  |  1.0 |
+|----------+-------+-------+------|
+
+***** Holdings is the number of shares of each owned at the end of the day
+
+- Append the cash time series into the trade matrix
+- df_trade['_CASH'] = ts_cash
+
+|-------------+------+------+------|
+| Date\Shares | AAPL | MSFT | CASH |
+|-------------+------+------+------|
+| 12/1        |   50 |  200 | 1000 |
+| 12/2        |  100 |   50 |  200 |
+|-------------+------+------+------|
+
+|-------------+-------+------+------+-------|
+| Date\Shares |  AAPL | MSFT | CASH | Value |
+|-------------+-------+------+------+-------|
+| 12/1        | 20000 | 6000 | 1000 | 27000 |
+| 12/2        | 50000 | 2500 |  200 | 52700 |
+|-------------+-------+------+------+-------|
+
+***** Value
+
+s= Sum(Price * Hold)
+
+|------+----------|
+| Date | Value    |
+|------+----------|
+| 12/1 | 27000.00 |
+| 12/2 | 52700/00 |
+|------+----------|
+
+** Quiz
+
+*** 1. Run your market simulator on Orders.csv.
+
+- What is the value of the portfolio on 6th December, 2011?
+
+2011,12,6,1127884
+
+1126000.0 to 1128000.0
+
+*** 2. Run your market simulator on Orders.csv.
+
+- What is the value of the portfolio on 9th November, 2011?
+
+2011,11,9,1133056
+
+1132000.0 to 1134000.0
+
+*** 3. Run your market simulator on Orders.csv.
+
+- What is the value of the portfolio on 26th September, 2011?
+
+2011,9,26,1142488
+
+1142000.0 to 1144000.0
+
+*** 4. Run your market simulator on Orders.csv.
+
+- What is the value of the portfolio on 21st July, 2011?
+
+2011,7,21,1123504
+
+1123000.0 to 1125000.0
+
+*** 5. Run your market simulator on Orders.csv.
+
+- What is the value of the portfolio on 28th March, 2011?
+
+2011,3,28,1052767
+
+1052000.0 to 1054000.0
+
+*** 6. Run your market simulator on Orders2.csv.
+
+- What is the value of the portfolio on 6th December, 2011?
+
+2011,12,6,1091617
+
+1090000.0 to 1092000.0
+
+*** 7. Run your market simulator on Orders2.csv.
+
+- What is the value of the portfolio on 9th November, 2011?
+
+2011,11,9,1096789
+
+1096000.0 to 1098000.0
+
+*** 8. Run your market simulator on Orders2.csv.
+
+- What is the value of the portfolio on 26th September, 2011?
+
+2011,9,26,1106221
+
+1106000.0 to 1108000.0
+
+*** 9. Run your market simulator on Orders2.csv.
+
+- What is the value of the portfolio on 21st July, 2011?
+
+2011,7,21,1087857
+
+1087000.0 to 1089000.0
+
+*** 10 Run your market simulator on Orders2.csv.
+
+- What is the value of the portfolio on 28th March, 2011?
+
+2011,3,28,1008114
+
+1007000.0 to 1009000.0
+

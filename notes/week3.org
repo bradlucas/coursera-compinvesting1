@@ -1,0 +1,148 @@
+* Week 3
+** Manipulating Data in Python and QSTK
+- Examples in QSTK/Examples/Basic
+*** Manipulating Data in Python with Numpy Part 1, 2, 
+- http://wiki.quantsoftware.org/index.php?title=Numpy_Tutorial_1
+
+import numpy as np
+np.zeros((2,3))
+array([[ 0.,  0.,  0.],
+       [ 0.,  0.,  0.]])
+
+np.ones((2,3))
+array([[ 1.,  1.,  1.],
+       [ 1.,  1.,  1.]])
+
+np.random.random((2,3))
+array([[ 0.39642819,  0.96183076,  0.82076004],
+       [ 0.71677773,  0.83790804,  0.66391758]])
+
+rangeArray=np.arange(6,12)
+>>> rangeArray
+array([ 6,  7,  8,  9, 10, 11])
+
+rangeArray.reshape(3,2)
+array([[ 6,  7],
+       [ 8,  9],
+       [10, 11]])
+
+
+np.arange(1,101).reshape((10,10))
+array([[  1,   2,   3,   4,   5,   6,   7,   8,   9,  10],
+       [ 11,  12,  13,  14,  15,  16,  17,  18,  19,  20],
+       [ 21,  22,  23,  24,  25,  26,  27,  28,  29,  30],
+       [ 31,  32,  33,  34,  35,  36,  37,  38,  39,  40],
+       [ 41,  42,  43,  44,  45,  46,  47,  48,  49,  50],
+       [ 51,  52,  53,  54,  55,  56,  57,  58,  59,  60],
+       [ 61,  62,  63,  64,  65,  66,  67,  68,  69,  70],
+       [ 71,  72,  73,  74,  75,  76,  77,  78,  79,  80],
+       [ 81,  82,  83,  84,  85,  86,  87,  88,  89,  90],
+       [ 91,  92,  93,  94,  95,  96,  97,  98,  99, 100]])
+>>> 
+
+np.sum()
+np.average()
+np.mediam()
+
+
+
+# Python copies by reference
+# if you create a new reference to an array you'll see changes in the original as well as the new reference
+
+# To copy
+square=np.arange(1,10).reshape((3,3))
+square2=square.copy()
+
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+
+
+# Comprehension
+avg=np.average(square)
+stdDev=np.std(square)
+
+
+>>> avg
+5.0
+>>> stdDev
+2.5819888974716112
+
+square2[ (square-avg) > stdDev] = avg+stdDev
+square2[ (square-avg) < -stdDev] = avg-stdDev
+
+
+
+# Matrix multiplication
+>>> matA
+array([[1, 2],
+       [3, 4]])
+>>> matB
+array([[5, 6],
+       [7, 8]])
+>>> np.dot(matA, matB)
+array([[19, 22],
+       [43, 50]])
+
+*** Manipulation Data in Qstk 1, 2
+*** Quiz Preparaton: Analyze and Optimize a Portfolio
+**** Part 1
+- Part 1
+--------
+- 4 symbols
+- Buy and hold
+- What is the best alloation
+- Best is the highest Sharpe ratio
+
+- Examples/Basic
+- tutoria1.py and tutorial3.py
+- Caution: tutorial3 rebalaces every day
+
+- Part 2
+--------
+- Write a function simulate()
+- Input: start_date, end_date, [symbols], [allocations]
+- Output: Standard deviation of returns of portfolio, Average daiy returns of portfolio, Sharpe ratio of portfolio, Cumulative return of the porfolio
+- vol, daily_ret, sharpe, cum_ret = simulate(startdate enddate, ['goog', 'aapl', 'gld', 'xom'], [0.2, 0.3. 0.4, 0.1]
+
+- Part 2.5
+----------
+- Check function via examples on wiki
+
+- Part 3
+--------
+- Use simulate() to build a portfolio optimzer
+- Test thousands of possible portfolios
+- Nested for loops
+- 10% increments
+- Allocation has to add up to 1
+
+- Part 4
+--------
+- Build a chart to show the result
+
+**** Part 2
+- Excel 
+
+*** Review
+**** Practice Activity: Portfolio Optimization
+
+Please review the following link for the practice activity:
+
+http://wiki.quantsoftware.org/index.php?title=CompInvestI_Homework_1
+
+The purpose of this activity is to:
+
+Introduce you to historical equity data
+Introduce you to Python & Numpy, and
+Give you a first look at portfolio optimization
+We also hope it will get you started having opinions about equities. In this activity you will create and optimize a portfolio for the year 2011.
+
+Important note: This is not a realistic way to build a strong portfolio going forward. The intent is for you to learn how to assess a portfolio.
+
+NOTE: This is not a graded assignment, and you may use the discussion forums to share your ideas and get help in doing this activity.
+*** Homework 1: Create and analzye a portfolio
+- http://wiki.quantsoftware.org/index.php?title=CompInvestI_Homework_1
+- http://wiki.quantsoftware.org/index.php?title=QSTK_Tutorial_1
+- http://quantbox.wikia.com/wiki/Python-QSTK_Portfolio_Analyzer
+

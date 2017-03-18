@@ -1,0 +1,273 @@
+* Week 6
+** The Fundamental Law, CAPM for Portfolios
+*** Coin Flipping
+- Information Ratio (IR)
+- Information Coefficient (IC)
+- Strategy breadth (BR)
+- Fundamental Law
+- Why small bets are better
+- Examples applications of the Law
+
+- Thought Experiment
+- Stock trade = Bet - Coin flip
+- Ucertainty = Beta
+- Coin bias = Alpha  (biased for the experiment, slighty more likely to be heads)
+  - 51% heads
+
+
+- Reward = expected return = Sharpe Ratio = Return/Risk
+
+- Single bet case
+- 0.51 * 1000 + 0.49 - 1000 = 20
+
+- Multi bet case
+- 1000 * (0.51*1 + 0.49-1) = 20
+- 1000 * .02 = 20
+
+
+- Risk
+
+- Risk measure 1 : Possibility to lose everything
+- Single bet : 49% chance of lossing everything
+-
+- Multi bet case
+- 0.49 * 0.49 * .... = 0.49 ^ 1000 (small)
+
+
+- Risk measure 2 : Standard deviation
+- Single Bet
+- single event
+- Win once and lose for 999 bets
+- stddev(1000,0,0,0,0, ...0) = 31.62
+-
+- Multi bet:
+- stddev(1, -1, 1, -1, .... = 1.00
+
+- RewardRisk
+- Single
+- $20 / $31.62 = 0.63
+- Multi
+- $20 / $1 = $20
+
+
+- Observe
+- SR(multi) = SR(single) * SQRT(1000)
+- SR(multi) = C * alpoha * SQRT(bets)
+- 20.0 = 0.63 * SQRT(1000) = 0.63 * 31.62 = 20
+
+- Take Home Lessions
+Higher Alpha = higher Sharpe Ratio
+More Besta = higher Sharpe Ratio
+Sharpe Ratio grows ast the SQRT of Beta
+*** The Fundamental Law
+*** CAPM for Portfolios: Managing Market Risk
+*** Quiz Preparation
+*** Quiz - Event Study into Si
+*** mulator
+*** Fundamental Law  
+Grinold & Kahn chapters 5 & 6
+http://augmentedtrader.word.press.com
+Fundamental Law
+Coin Flipping
+
+Fundamental Law of Active Portfolio Management
+
+Information Coefficient (IC, Skill)
+Correlation of forecast to actual return
+Remember the biased coin
+
+Breadth
+Number of opportunities to execute
+Number of coin flip bets
+ 
+Fundamental Law
+IR = IC * SQRT(BREADTH)
+Information Ratio == measgure of performance
+
+*** Funamental Law 2
+Capital Assets Pricing Model
+
+Market/Beta 
+Alpha has two components - Skill and Random (market)
+
+
+Exoginist events ?
+5:05
+
+
+Extend to Portfolios
+Holdings
+
+
+h1 = .25
+b1 = 3.0
+h2 = .75
+b2 = 1.0
+
+
+How can you increase Alpha while reducing exposure to the Market
+
+Return for a portfolio is just a weighted sum of the individual returns of all of the holdings
+We can separate out the compons ot returns related to:
+Market (Beta)
+Skill (Alpha)
+
+** CAPM for Portfolios: Managing Market Risk
+
+Find weightings hi to that portfolio beta is zero
+"Removes"' market risk
+
+Can reduce market risk by zeroing out beta
+Core concept for hedge funds
+Portfolio optimizers do this
+
+** Abalyzing an Event Study
+
+- Event Definition
+- Event Profiler  <- History Data
+- Events
+ 
+Event study lets you test hypotheses
+- What if market Bollinger value is high, but
+- Stock Bollinger value is low?
+- Buy signal?
+
+** Review Overview
+- HW 1 - Excel, build portfolio
+  - Assest looking back
+  - Look at basici principles of assessing a portfolio
+- HW 2 - Event Study
+  - Event profiler
+  - Tested event studies
+- HW 3 - Market simulator
+  - 
+- HW 4 - Generate trades
+  - 
+
+
+Event study code
+Write to event matrix, print to orders csv
+Then run through the market simulator
+To get a performance report
+
+What trades to issue?
+- Decide this by examing event study
+Buy or sell?
+How long to hold?
+Remember: Issue entry and exit orders at the same time
+
+
+Homework definition inclued specific experiment to run
+Ok to share/compare
+Actual hand in will ask you to run a different variation
+
+Assignment
+http://wiki.quantsoftware.org/index.php?title=CompInvesti_Homework_4
+
+** Homework 4: Event Study into Simulator
+
+*** Quiz
+
+**** For each question: 
+The event is defined as when the actual close of the stock price drops below EVENT_AMOUNT, more specifically, when:
+***** Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+***** Using the symbol list - SP5002012
+***** Starting Cash: $50,000
+***** At every event Buy 100 shares of the equity, and Sell them 5 trading days later. In case not enough days are available Sell them on the last trading day. (Similar to what the homework 4 description wanted).
+***** Run this in your simulator and analyze the results.
+
+**** Event Amount == 6.0
+The final value of the portfolio --  (2009, 12, 30, 57954.0)
+
+Details of the Performance of the portfolio :
+
+Data Range :  2008-01-09 16:00:00  to  2009-12-30 16:00:00
+
+Sharpe Ratio of Fund : 0.810843346681
+Sharpe Ratio of $SPX : -0.149060956848
+
+Total Return of Fund : 1.15908
+Total Return of $SPX : 0.799372662565
+
+Standard Deviation of Fund :  0.00616129271304
+Standard Deviation of $SPX : 0.0219976268348
+
+Average Daily Return of Fund :  0.000314708540597
+Average Daily Return of $SPX : -0.000206556784751
+
+**** Event Amount == 7.0
+The final value of the portfolio --  (2009, 12, 15, 60309.0)
+
+Details of the Performance of the portfolio :
+
+Data Range :  2008-01-03 16:00:00  to  2009-12-15 16:00:00
+
+Sharpe Ratio of Fund : 0.853970309356
+Sharpe Ratio of $SPX : -0.211858724007
+
+Total Return of Fund : 1.20618
+Total Return of $SPX : 0.765589153929
+
+Standard Deviation of Fund :  0.00760232198877
+Standard Deviation of $SPX : 0.0221667846437
+
+Average Daily Return of Fund :  0.000408967466281
+Average Daily Return of $SPX : -0.000295834475593
+
+**** Event Amount == 8.0
+The final value of the portfolio --  (2009, 12, 22, 65147.0)
+
+Details of the Performance of the portfolio :
+
+Data Range :  2008-01-17 16:00:00  to  2009-12-22 16:00:00
+
+Sharpe Ratio of Fund : 1.02070365377
+Sharpe Ratio of $SPX : -0.0824636997073
+
+Total Return of Fund : 1.30294
+Total Return of $SPX : 0.838567410463
+
+Standard Deviation of Fund :  0.00906731413011
+Standard Deviation of $SPX : 0.0221570940927
+
+Average Daily Return of Fund :  0.000583012761115
+Average Daily Return of $SPX : -0.000115100006188
+
+**** Event Amount == 9.0
+The final value of the portfolio --  (2009, 12, 15, 61990.0)
+
+Details of the Performance of the portfolio :
+
+Data Range :  2008-01-04 16:00:00  to  2009-12-15 16:00:00
+
+Sharpe Ratio of Fund : 0.75620475544
+Sharpe Ratio of $SPX : -0.176588762029
+
+Total Return of Fund : 1.2398
+Total Return of $SPX : 0.784858638595
+
+Standard Deviation of Fund :  0.0102719870762
+Standard Deviation of $SPX : 0.0221622835459
+
+Average Daily Return of Fund :  0.000489320710931
+Average Daily Return of $SPX : -0.000246534270419
+
+**** TODO Event Amount == 10.0
+The final value of the portfolio --  (2009, 12, 30, 59789.0)
+
+Details of the Performance of the portfolio :
+
+Data Range :  2008-01-03 16:00:00  to  2009-12-30 16:00:00
+
+Sharpe Ratio of Fund : 0.607046135034
+Sharpe Ratio of $SPX : -0.18556812555
+
+Total Return of Fund : 1.19578
+Total Return of $SPX : 0.778365902872
+
+Standard Deviation of Fund :  0.0108337826038
+Standard Deviation of $SPX : 0.0219609097257
+
+Average Daily Return of Fund :  0.000414287227849
+Average Daily Return of $SPX : -0.000256716295552
+

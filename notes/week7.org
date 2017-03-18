@@ -1,0 +1,200 @@
+* Week 7
+** Information and Technical Analysis
+*** Example Information Sources
+- Thomas Reuters Machine Readable News
+- StarMine
+  - Analyst revisions Model
+  - Daily feed each evening
+  - Updates include analysts' revisions
+- InsiderInsights
+  - Derived rom public filings
+  - Value aded assessing importance of buying or selling
+
+- Historical data you can back test
+- Surviro bias free
+  - Include dead companies
+- Ease of integration with your sys (csv, database, etc)
+- Low latency
+  - Arrives to you quickly
+
+*** Technical Analysis - Intro
+- Historical procies and volume data only to computer "indicators"
+- Indicators are calculated from recent price and volume data to predice future price movements
+- Indicators are "heruistics"
+
+- Leverages
+  - Psychology of the investor
+  - "market physics"
+
+- Tucker's iew
+- Agnostic, evidence-based approach
+- Bretter in the 80s-90s, market is more efficient now
+- Single indicators are weak in their predictive power
+- Weak predictive poser but no 'may' not be strong enough to overcome transaction costs
+- Best use: when a stock's indicators are contrary to the market
+- Multiple indicators together are 'better'
+
+- If a lot of people believe in a n indicator they act on it
+- giving the indicator a self fullfilling prophecy
+
+
+- Technocal Analysis Explained - Martin Pring
+- Investopedia.com
+- Wikipedia.org
+
+
+"Identify a trend reversal at a relatively early stage
+and ride on that trend until the wight of the evidence
+shows or proves that the trend has reversed"
+- Martin Pring
+
+Assumption: "People will continue to make the smae
+mistakes they have made in the past"
+
+**** Three "Branches"
+---------------
+- Sentiment Indicators
+  - Emotions of Investors
+
+- Flow-of-funds Indicator
+  - How mich cash has been flowing 'in' or 'out
+  - What is the capacity of the market to by or sell
+
+- Market Structure Indicators
+  - Most indicators fall in this group
+
+**** Time Scales and Trend Analysis - Tucker's opinion
+ 
+Shorter term price movement is driven by market mechanics
+Can be predicted using co-located information like order book
+
+Longest term price movement is driven by exogenous events and insights not always
+observable by computer
+
+*** Example Indicators
+- Major Theme : Underlying Value - opinion
+
+- Assumption is that thre is a true underlying value for the asset
+- Emotions and market structure cause price to deviate
+- If we can estimate the underlying value, we can find argitrage opportunities
+- Mean reversion
+
+
+- Examples
+- Google Finance
+  - SMA
+  - MACD
+    - Moving average convergance divergance
+      - Looks at two moving averages
+
+  - Bollinger
+    - Volital the bands expand
+    - When calm they contract
+    - When the price crosses a band that is a signal. 
+      - Cross bottom is a buy
+      - Cross top is a sell
+
+- Important to convert to standard units
+- Usually like to use -1.0 t0 1.0
+- More convenient for degining events and for Machine Learning
+
+
+- Bollinger Bands
+- At top band is 1.0
+- Above band is greater
+- At bottom band is -1.0
+- Below is greater
+
+Indicator should adapt to volatility of the stock's price
+
+**** How To Compute Bollinger Bands
+- Read in historical closing prices
+- md = "rolling" mean over look back period
+- std = "rolling" STDEV over look back
+- upper = mid + std
+- lower = mid + std
+
+Current "value" of Bollinger
+ - if current prices at upper band = 1.0
+ - if current price at lower band = -1.0
+ value = (price - md/std)
+
+** Homwork 5
+
+- http://wiki.quantsoftware.org/index.php?title=CompInvesti_Homework_5
+
+- http://chrisalbon.com/python/pandas_moving_average.html
+
+
+(env) blucas.local:~/work/compinvesting1/homework/hw5$ python bollinger.py 01-01-2010 07-31-2010 20
+
+Bollinger Value
+                         AAPL      GOOG       IBM      MSFT
+2010-06-18 16:00:00  2.002769  1.186619  1.422178  0.862104
+2010-06-21 16:00:00  1.431176 -0.029778  1.436512  0.149382
+2010-06-22 16:00:00  1.606517 -0.337503  0.836424 -0.114949
+2010-06-23 16:00:00  1.192150 -0.858411  1.034871 -0.821996
+2010-06-24 16:00:00  0.905900 -1.646459  0.228659 -1.341021
+2010-06-25 16:00:00  0.589098 -1.674341 -0.223155 -1.832655
+2010-06-28 16:00:00  0.696137 -1.554899  0.472261 -1.853821
+
+
+Lookback = 20 days
+Bollinger_val = (price - rolling_mean) / (rolling_std)
+Please use pandas rolling mean and standard deviation functions.
+
+*** What is the Bollinger value for AAPL on 2010/5/12?
+2010-05-12 16:00:00  0.515937 -1.051277  1.770595 -0.958810
+
+0.515937
+
+0.45 to 0.55
+
+*** What is the Bollinger value for AAPL on 2010/5/21?
+2010-05-21 16:00:00 -1.376452 -2.105740 -0.963326 -1.990359
+
+-1.376452
+
+-1.3 to -1.4
+
+*** What is the Bollinger value for AAPL on 2010/6/14?
+2010-06-14 16:00:00  0.420239 -0.349140  1.017779 -0.638186
+
+0.420239
+
+0.4 to 0.5
+
+*** What is the Bollinger value for AAPL on 2010/6/23?
+2010-06-23 16:00:00  1.192150 -0.858411  1.034871 -0.821996
+
+1.192150
+
+1.15 to 1.25
+
+*** What is the Bollinger value for MSFT on 2010/5/12?
+2010-05-12 16:00:00  0.515937 -1.051277  1.770595 -0.958810
+
+-0.958810
+
+-0.9 to -1.0
+
+*** What is the Bollinger value for MSFT on 2010/5/21?
+2010-05-21 16:00:00 -1.376452 -2.105740 -0.963326 -1.990359
+
+-1.990359
+
+-1.95 to -2.05
+
+*** What is the Bollinger value for MSFT on 2010/6/14?
+2010-06-14 16:00:00  0.420239 -0.349140  1.017779 -0.638186
+
+-0.638186
+
+-0.6 to -0.7
+
+*** What is the Bollinger value for MSFT on 2010/6/23?
+2010-06-23 16:00:00  1.192150 -0.858411  1.034871 -0.821996
+
+-0.821996
+
+-0.75 to -0.85

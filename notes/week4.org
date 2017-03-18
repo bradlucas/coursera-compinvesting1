@@ -1,0 +1,380 @@
+* Week 4
+** Efficient Markets Hypothesis
+- https://en.wikipedia.org/wiki/Efficient-market_hypothesis
+- http://www.irrationalexuberance.com/main.html?src=%2F
+- https://en.wikipedia.org/wiki/File:Price-Earnings_Ratios_as_a_Predictor_of_Twenty-Year_Returns_(Shiller_Data).png
+- https://www.bloomberg.com/view/articles/2015-02-19/robert-shiller-on-bubbles-in-new-irrational-exuberance-edition
+*** Research Papers and Event Profiler Tutorial
+Related Research Papers :
+
+MacKinlay paper about Event Studies
+- http://staff.ui.ac.id/system/files/users/ratnadewi_aaa/material/mackinlayp.pdf
+
+Maymin paper on Efficient Markets
+- http://arxiv.org/pdf/1002.2284.pdf
+
+Tutorial
+
+Event Profiler Tutorial
+- http://wiki.quantsoftware.org/index.php?title=QSTK_Tutorial_9
+
+*** Where Does Information Come From?
+- Nearly all quantitative-based investing is based on some kind of arbitrage model
+
+- Remember Market Relative
+
+- Technial Analysis
+  - Price and Volume only
+  - Data from the markets
+
+- Fundamental 
+  - Financial Analysis
+  - P/E ratios, cash on hand, dividends
+  
+  - Data from SEC filings, News
+
+*** 3 Version of Efficient Markets Hypothesis
+- https://en.wikipedia.org/wiki/Efficient-market_hypothesis
+- market has all available information thereby
+- price == value
+**** Weak
+- prices relfect all past publicaly availbel information
+- prohibts profit from Technical Analysis
+**** Semi-Strong
+- Weak + prices instantly change to reflect new inofmration
+- prohibits profit from Technical Analysis and Fundamental Analysis
+**** Strong
+- Semi-Strong + price instantly reflect hidden or "insider" information
+- prohibits profit from insider information
+
+
+Shiller, Robert (2005) Irrational Exuberence (2nd edition)
+
+
+Behaviroal Econmoics : Argues Against EMH
+
+Cognitive biares such as:
+- overconfidence
+- overreation
+- information bias
+
+** Event Studies
+= http://web.mit.edu/doncram/www/eventstudy.html
+*** Event Studies
+*** Event Studies in QSTK
+Columns are equities
+Rows dates
+1 = event
+nan = not a number
+
+- http://wiki.quantsoftware.org/index.php?title=QSTK_Tutorial_9
+- /Users/brad/work/QSTK/Examples/EventProfiler/tutorial.py
+
+- ep.eventprofiles(df_events, d_date, i_lookback=20, i_lookforward=20, ...
+- any event if too early (within 20 days or last 20 day) then not enough to it will be ignored
+
+** Portfolio Optimization and the Efficient Frontier
+- Understand "risk"
+- Understand correlation and covariance
+- Understand  Mean Variance Optimization
+- Understand the Efficient Frontier
+*** Optimization Overview
+- Allocation to each equity that minimizes risk
+- out definiton of risk
+- volatility
+- stadard deviation of daily returns 
+
+- other measures of risk
+- drawdown
+- probablity of drawdown
+
+- Harry Markowitz
+- Mean Variance Optimization
+- 1990 Nobel Prize
+- You can build a portfolio that has lower risk than any of it's constituents
+
+*** Input and Outputs of a Portfolio Optimzer
+- Imputs
+- Expected return for each Equity
+- Volatility (risk) for each equity
+- Target return
+- Covariance matrix
+  - For each equity how does it vary with the others
+
+- Output
+- Portfolio weights that minimize risk for tarket return
+
+*** Importance of Correlation and Covariance
+- Correlation between equities
+- Portfolio is a weighted combination of equities
+
+- Look at the correlation in daily returns
+- 
+
+Lookup Correlation and Covariance (on Wikipedia, similar Math)
+
+Correlation varies between -1 to 1. 1 means they move together, -1 opposite., 0 is random
+
+You can get a return graph that is 'straighter' by blending equities that are not-correlated
+This is a lower risk solution
+
+** The Efficient Frontier
+*** The Efficient Frontier
+- At different return values graphed you'll get a curve
+- This curve is the efficient frontier
+- One point has the highest return
+  - This is the point with one equity with the highest return
+- Another point has the lowest risk
+  - Similary, the lower risk is the portfolio with the single equity with the lowest risk
+
+- The 'best' is between
+
+*** How Optimizers Work
+- See QSTK_Tutorial_8
+- /Users/brad/work/QSTK/Examples/Basic/tutorial8.py
+
+
+- Assume that the optimzation function is convex
+- Means there is only one peak
+
+http://en.wikipedia.org/wiki/Convex_function
+http://en.wikipedia.org/wiki/Convex_optimization
+
+- QSTK uses CVXOPT
+- An open source optimizer
+- http://abel.ee.ucla.edu/cvxopt/
+** Quiz - Preparation
+** Quiz - Event Studies
+
+- Create a version of the Event Profiler that scans all stockes in a given list to discover events relating to "actual_close"
+- Examine period Jan 1, 2008 to Dec 31, 2009
+- Two data sets:
+  - sp5002008.txt
+  - sp5002012.txt
+
+- Changes to Event Profiler
+- Note: actual_close
+- Event: when actual_close goes below 5.0
+
+- Look in 2008 and 2012 and observe the differences
+ 
+- http://wiki.quantsoftware.org/index.php?title=CompInvestI_Homework_2
+
+- Bug in EventProfile graphing in QSTK
+- http://stackoverflow.com/questions/33851603/qstks-eventprofiler-function-doesnt-plot-properly
+
+*** Quiz
+**** 01. The event is defined as when the actual close of the stock price drops below $5.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟻.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟻.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Do two runs - Once with SP5002008 and other with SP5002012.
+
+Which of the two runs gives better results ?
+
+Run with S&P 500 in 2012. (S&P5002012)  <<<<<<<<<<
+
+Run with S&P 500 in 2008. (S&P5002008)
+
+**** 02. The event is defined as when the actual close of the stock price drops below $6.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟼.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟼.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002008
+
+What is the number of events for the following event ?
+
+386
+
+380 to 390           <<<<<<<<<<
+
+370 to 380
+
+360 to 370
+
+350 to 360
+
+**** 03. The event is defined as when the actual close of the stock price drops below $7.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟽.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟽.𝟶 an event has occurred on date t.
+
+- est this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002008
+
+What is the number of events for the following event ?
+
+468
+
+445 to 455
+
+455 to 465
+
+475 to 485
+
+465 to 475 <<<<<<<<<<
+
+**** 04. The event is defined as when the actual close of the stock price drops below $8.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟾.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟾.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002008
+
+What is the number of events for the following event ?
+
+527
+
+510 to 520
+
+530 to 540
+
+520 to 530 <<<<<<<<<<
+
+540 to 550
+
+**** 05. The event is defined as when the actual close of the stock price drops below $9.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟿.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟿.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002008
+
+What is the number of events for the following event ?
+
+596
+
+590 to 600           <<<<<<<<<<
+
+620 to 630
+
+610 to 620
+
+600 to 610
+
+**** 06. The event is defined as when the actual close of the stock price drops below $10.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟷𝟶.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟷𝟶.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002008
+
+What is the number of events for the following event ?
+
+643
+
+660 to 670
+
+640 to 650 <<<<<<<<<<
+
+650 to 660
+
+630 to 640
+
+**** 07. The event is defined as when the actual close of the stock price drops below $6.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟼.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟼.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002012
+
+What is the number of events for the following event ?
+
+224
+
+220 to 230 <<<<<<<<<<
+
+230 to 240
+
+200 to 210
+
+210 to 220
+
+**** 08. The event is defined as when the actual close of the stock price drops below $7.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟽.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟽.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002012
+
+What is the number of events for the following event ?
+
+282
+
+265 to 275
+
+265 to 255
+
+245 to 255
+
+275 to 285   <<<<<<<<<<
+
+**** 09. The event is defined as when the actual close of the stock price drops below $8.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟾.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟾.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- sing the symbol list - SP5002012
+
+What is the number of events for the following event ?
+
+375
+
+370 to 380 <<<<<<<<<<
+
+360 to 370
+
+350 to 360
+
+380 to 390
+
+**** 10. The event is defined as when the actual close of the stock price drops below $9.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟿.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟿.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002012
+
+What is the number of events for the following event ?
+
+451
+
+445 to 455 <<<<<<<<<<
+
+455 to 465
+
+435 to 445
+
+465 to 475
+
+**** 11. The event is defined as when the actual close of the stock price drops below $10.00, more specifically, when:
+
+𝚙𝚛𝚒𝚌𝚎[𝚝−𝟷]>=𝟷𝟶.𝟶𝚊𝚗𝚍𝚙𝚛𝚒𝚌𝚎[𝚝]<𝟷𝟶.𝟶 an event has occurred on date t.
+
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+
+- Using the symbol list - SP5002012
+
+What is the number of events for the following event ?
+
+461
+
+455 to 465 <<<<<<<<<<
+
+465 to 475
+
+475 to 485
+
+485 to 495
+

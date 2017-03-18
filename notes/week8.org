@@ -1,0 +1,168 @@
+* Week 8
+** Jensen's Alpha
+- Michael Jensen
+- 1968
+
+Measure should adopt to volality of the stock's price
+
+Move from expected to actual
+
+R = Rf + B * (Rm - Rf)
+
+Example: SPLV versus SPV
+Low volitility members of the SP500
+SPLV's beta = 0.75
+
+CAPM asserts that E(alpha) = 0
+Others assert that alpha is a measure of the skill of the manager
+
+
+Slope of the line is Beta
+Where it intersects with the Y-axis is Alpha
+
+** Back Tester
+- Proess of testing a trading strategy on prior time periods.
+
+- Forward testing
+- Each day records which days you would have taken
+- Then evaluate going forward
+- Paper trading
+- Takes time
+
+- Back testing
+- Quicker to validate a strategy
+
+- Back testing is a simulation
+
+- Roll back to an earlier point in time
+- Present current information to the strategy. No future knowledge
+- Ask strategy: What would you do?
+- Accept ordesr, simulate their execution
+- Track portfolio value
+- Step forward, repeat
+
+- Risks
+- Market is different now
+- Your test strategy was just "lucky"
+  - This is the "data mining fallacy"
+  - If you try lots of parameters (Machine Learning) you can stumble on chance soliutions that work
+- Over fitting
+  - The strategy is tuned to the historical data
+  - It is optimized to noise or randomness, not an underlying principle
+    
+- Techniques
+- Do initial test with a reduced data set   
+  - Then test on larger to valid
+  - Cross validation
+
+- Components
+  - Historical data
+    - Complete, broad and survior-bias free (include dead stocks)
+  - Strategy definition
+    - Ease of use in defining strategies
+  - Market simulator
+    - Accurate simulation of transaction costs, including commisions and market impact
+  - Analysis engine
+    - Assess qualitative performance of the result
+
+- Example: Market Impact
+- Thinly traded stocks can be effected by your strategy
+- @see paper by Almgren et al 2005
+- If you are 100% of the volume of a stock for a day you will effect the price drastically
+
+- Example: Analysis
+- @see Lucena example in video
+- Find reall world example
+
+** Machine Learning Preview
+- The market is a "Big Data" challenge
+- 13,000 securities trading in America
+- 120 technical and fundamental factors
+- 252 trading days per year
+- 1.96 billion data points in 5 years
+
+- Machine Learning
+- The construction and study of systems that can learn from data
+
+- Classification: 
+  - What is it?
+  - Buy or sell
+- Regression
+  - A numerical predication
+
+- Building a Model from Data
+- The goal is to build a model
+- Takes input and produces an output/action/prediction
+
+- Model Types:
+
+- 1. Parametric Model
+- Linear
+- y = mx + b
+- Parameters
+- Linear regression
+
+- Polynomial
+- y = mb * x^2 = m2*x + b
+
+- 2. Data Drive
+- 
+
+
+Parametric Model
+Pros
+- Don't usually over fit
+- very fast at run time
+Cons
+- Does nodel complete non-leinerar data well
+- Sometimes over simplify
+
+Data-Drive
+Pros
+- Can model completx data well
+- easily adops to more data
+Cons
+- Sometimes slow at run time
+Sometimes over fits
+
+
+2D Data-Driven Model
+Two dimension
+
+K nearest neighbor
+
+Three dimensional space
+Stock, correlation, stochastic
+Color for future return
+
+Considerations
+- which factors to use?
+  - your insite or number crunching
+- which data to use?
+- how to assess models
+- how to prevent over fitting
+
+** Homework 6
+
+- http://wiki.quantsoftware.org/index.php?title=CompInvesti_Homework_6
+- https://www.coursera.org/learn/computational-investing/discussions/weeks/8/threads/94y69E6uEead_RIU7Fr4aw
+
+*** Quiz
+The event is defined as when :
+
+Bollinger value of equity today < -2.0
+Bollinger value of equity yesterday >= -2.0
+Bollinger value of SPY today >= 1.1
+- Test this event using the Event Profiler over the period from 1st Jan, 2008 to 31st Dec 2009.
+- Using the symbol list - SP5002012
+- Using adjusted_close to create Bollinger bands
+- 20 day lookback Bollinger bands
+
+What is the number of events for the following event ?
+
+> 232
+
+** Homework 7
+
+- http://wiki.quantsoftware.org/index.php?title=CompInvesti_Homework_7
+

@@ -1,0 +1,292 @@
+* Week 1
+** Course Overview
+*** Introduction
+*** Course Overview
+- Understand electronic markets
+- Understand market data
+- Write software to visualize
+- Write software to discover
+- Create a market simulator
+
+- 8 weeks, 2 modules per week
+- 5 to 10 short videos per module
+- short quizzes throughout
+- projects in excel and python (required for a grade)
+- students will grade each other
+
+- Founder Lucena Research
+
+**** Course Resources
+- http://wiki.quantsoftware.org
+- "Active Portfolio Management" by Grinold & Kahn
+- "All About Hedge Funds" by Jaeger
+- "What Hedge Funds Really Do" by Philip Romero and Tucker Balch
+
+**** QuantSoftware ToolKit
+http://wiki.quantsoftware.org/index.php?title=QuantSoftware_ToolKit
+
+*** Consent Form
+*** Syllabus
+
+Learning Objectives
+
+Become familiar with electronic markets
+Interpret market data
+Write software to visualize market data
+Write software to discover market data
+Create a market simulator
+Learner Audience
+
+This course will be beneficial if you are looking to become a portfolio manager, hedge fund manager, or improve your understanding of investment in general.
+
+Prerequisites
+
+In addition to having a strong interest in stock markets, to be able to understand and keep pace with the materials in this course, you may want to do a short <self assessment> to determine if you are ready to start this course.
+
+In general, you should be conversant in the following topics:
+
+Advanced Programming (Python)
+Fundamental concepts of investing, financial markets
+Optional Text
+
+A helpful text for this course is "What Hedge Funds Really Do" by Philip Romero and Tucker Balch
+
+*** Course Resources
+
+- https://www.coursera.org/learn/computational-investing/supplement/TPxSD/course-resources
+
+*** Python Tutorials
+For this course, you will need to have advanced programming skills in Python. Please refer to the following tutorials to brush up your Python programming skills
+
+Learning Python - http://www.learnpython.org/
+Dive into Python - http://www.diveintopython.net/
+Think Python - http://www.greenteapress.com/thinkpython/
+
+** Portfolio Management
+*** Key Terms and Support Resources
+
+Key Terms
+
+Investopedia Links to key terms:
+
+Return 
+    - The gain or loss of a security in a particular period. The return consists of the income and the capital gains relative on an investment. It is usually quoted as a percentage.
+    - http://www.investopedia.com/terms/r/return.asp#axzz2Lc5AZO48
+
+Risk 
+  - The chance that an investment's actual return will be different than expected. Risk includes the possibility of losing some or all of the original investment.
+  - Different versions of risk are usually measured by calculating the standard deviation of the historical returns or average returns of a specific investment.
+  - A high standard deviation indicates a high degree of risk.Many companies now allocate large amounts of money and time in developing risk management strategies to help manage risks associated with their business and investment dealings. A key component of the risk mangement process is risk assessment, which involves the determination of the risks surrounding a business or investment.
+  - http://www.investopedia.com/terms/r/risk.asp#axzz2Lc5AZO48
+
+Arbitrage 
+  - The simultaneous purchase and sale of an asset in order to profit from a difference in the price.
+  - It is a trade that profits by exploiting price differences of identical or similar financial instruments, on different markets or in different forms.
+  - Arbitrage exists as a result of market inefficiencies; it provides a mechanism to ensure prices do not deviate substantially from fair value for long periods of time.
+  - http://www.investopedia.com/terms/a/arbitrage.asp#axzz2Lc5AZO48
+
+Order Book 
+  - A trading floor participant responsible for maintaining a list of public market or limit orders of a specific option class using the "market-marker" system of executing orders.
+  - http://www.investopedia.com/terms/o/orderbookofficial.asp#axzz2Lc5AZO48
+
+Support Resources
+
+Link to Yahoo Finance - http://finance.yahoo.com/
+
+*** Incentives of Portfolio Managers
+- So you want to be a portfolio manager?
+
+- Expense ratio
+  - Used by mutual funds and ETFs
+  - Fixed ratio
+  - Usually less than 1%
+  - Goal is to attract investment
+
+- Two and Twenty
+  - Classic structure for hedge funds
+  - 2% of total assets plus 20% of profits
+  - 1M with 20% / year = 60K/year
+    - 2% = 20000
+    - 20% profit * 20% = 40000
+    - 60000
+  - Incentive to increase returns
+
+  - 10M with 10% return/year
+    - 2% = 200000.
+    - 10% profit * 20% = 1:  200000.
+    - 400000.
+
+**** Attract Investors
+- Have a track record
+- Compelling story and back test
+- Do you fit a "pigeon hole"
+
+**** Types of Fund Goals
+- Reference to a benchmark (piegeon hole)
+- Absolute return
+
+*** Metrics for Assessing Fund Performance
+- Annual return
+- Risk: Standard deviation of return
+  - Volatility
+- Risk: Draw down
+- Reward/Risk: Sharpe Ratio
+  - Measure how much reward for how much risk you are taking
+  - Reward / Risk
+- Reward/Risk: Sortino Ratio
+  - Only counts volatility when it goes own
+- Jensen's Alpha
+
+**** Annual Return
+metric = (value[end] / value[start]) - 1
+% return = metric * 100
+
+**** Standard Deviation of Daily Return
+- daily_rets[i[ = (value[i]/value[i-1])-1
+- std_metric = stdev(daily_rets)
+
+**** Max Draw Down
+- Diff between trailing high point and the current down point
+- High point is 100 and how far you go down is the draw down
+
+**** Sharpe Ratio
+- daily_rets[i[ = (value[i]/value[i-1])-1
+- std_metric = stdev(daily_rets)
+
+- Most 'important' measure of asset performance
+- How well does the return of an asset compensate the investor for the risk taken?
+- The higher the Sharpe ratio the better
+- Comparing two assets each with the same return, the higher Sharpe ratio gives more return for the same risk
+
+
+- Reward/Risk - how much reward are you getting for your risk
+
+- Expected Return 
+- E[R - Rf] / Sqrt(var[R - Rf]
+- denominator is the std deviation
+
+- metric = k * mean(daily_rets) / stdev(daily_rets))
+
+- k = sqrt(250) for daily returns  -- 250 is the number of trading days in a year
+
+
+- Quiz
+------
+- mean(daily return) = 0.005
+- stdev(daily) = 0.04
+
+= sqrt(250) * 0.005 / 0.04
+= 1.97
+
+http://www.investinganswers.com/financial-dictionary/ratio-analysis/sharpe-ratio-4947
+
+*** Data Manipulation - Demo
+- Yahoo and Google have historical data
+- 12/01/2011 -12/31/2011
+- https://finance.yahoo.com/quote/AAPL/history?period1=1322715600&period2=1325307600&interval=1d&filter=history&frequency=1d
+
+** Market Mechanics
+*** How Prices Nove Up and Down
+- Understand order type
+- Understand order book at exchanges
+- Understand how buy/sell orders drive prices up or down
+- Understand the basic infrastructure of an exchange
+- Understand the major computaional components of a hedge fund
+
+- Orders
+- buy, sell
+- market, limit
+- shares
+- price (if limit)
+
+*** The Order Book
+- The ask prices are people who want to sell
+- The bid prices are what people are willing to pay
+
+- The gap between what people are asking and what people are bidding is called the spread
+- The spread is typically smaller on well traded stocks
+- The ask and bid prices are for 'limit' orders
+
+- The order book is static until one of two things happen
+- 1. The high bidder raises is bid to the lowest ask. This is called crossing the spread
+- 2. A market order comes in
+  - If a market order to buy comes in then the lowest ask is used
+  - If there isn't enough in the lowest ask then the next ask is used
+  - This is how market orders drive prices
+
+
+- See the Trade Grid for a stock in Think of Swim
+
+- All the ask prices are people who would like to sell
+- All the bid prices are people who would like to buy
+- The difference between the lowest ask and the highest bid is the spread
+
+- Orders facilitated via a broker and not directly with an exchange
+- short selling
+- buy to close
+
+- Short selling
+---------------
+- borrow the shares
+- sell them
+- you now have
+  - asset: cash
+  - liability: shares owed
+
+*** Hedge Funds and Arbitrage
+- How hedge funds exploit market mechanics
+
+- Order Book Observation
+- By co-locating in/near exchange they see the orders more quickly
+
+
+- Arbitrage
+- Differences between order books between different exchanges
+
+*** Computing Inside a Hedge Fund
+
+|-------------------+-------------------+----------------|
+| Historical Prices |                   | Orders         |
+|                   |                   |                |
+|                   | Trading Algorithm |                |
+|                   |                   |                |
+| Target Portfolio  |                   | Live Portfolio |
+|-------------------+-------------------+----------------|
+
+|-------------------+-----------------------+---------------------+---+------------------|
+| N-day forcast     |                       |                     |   |                  |
+|                   |                       | Portfolio Optimizer |   | Target Portfolio |
+| Current portfolio |                       |                     |   |                  |
+|                   | Historical Price Data |                     |   |                  |
+|-------------------+-----------------------+---------------------+---+------------------|
+
+|-----------------------+----------------------+---------------|
+| Information Feed      |                      |               |
+|                       | Forcasting Algorithm | N-day forcast |
+| Historical Price Data |                      |               |
+|-----------------------+----------------------+---------------|
+
+** Interview Paul Jiganti
+*** Part 1
+*** Part 2
+*** Part 3
+** Review
+** Quiz
+- February 19, 2017
+
+1. Which of the following is (are) possible goal(s) of a hedge fund?
+- Higher returns and lower volatility compared to a benchmark.
+
+2. What is the formula for Sharpe Ratio
+- Sharpe Ratio = E[R−Rf]/σ
+
+3. What is the difference between Sharpe and Sortino Ration
+- Sortino ratio only penalizes for negative volatility in the calculation of risk while Sharpe ratio penalizes for both positive and negative volatility.
+
+4. What is the standard financial definition of risk
+- Standard deviation of returns
+
+5.  What is the Sharpe ratio for mean(monthly returns) = 0.01 and standard deviation(monthly returns) = 0.04
+
+= sqrt(12) * 0.01 / 0.04
+= 0.866
