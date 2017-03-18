@@ -1,1 +1,14 @@
-EXAMPLES/*
+.DS_Store
+Examples
+QSTK
+VIDEOS
+.idea
+quiz
+reading
+orders.csv
+values.csv
+*.pdf
+setup
+setup.sh
+
+
