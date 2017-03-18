@@ -1,13 +1,13 @@
 #!/bin/python
 
-import pandas as pd
+#import pandas as pd
 import numpy as np
-import math
+#import math
 import copy
 import QSTK.qstkutil.qsdateutil as du
 import datetime as dt
 import QSTK.qstkutil.DataAccess as da
-import QSTK.qstkutil.tsutil as tsu
+#import QSTK.qstkutil.tsutil as tsu
 import QSTK.qstkstudy.EventProfiler as ep
 
 """
@@ -64,6 +64,7 @@ def spy_up_2_sym_down_3(ls_symbols, d_data):
     return event_count, df_events
 
 # @see http://wiki.quantsoftware.org/index.php?title=CompInvestI_Homework_2
+
 
 def sym_down_5(ls_symbols, d_data):
     '''Find events where the actual close of the stock price drops below $5.00'''
@@ -164,4 +165,3 @@ if __name__ == '__main__':
     # Function  : Find events where the actual close of the stock price drops below $5.00
     # Events    : 180
     # -----------------------------------------------------------
-
