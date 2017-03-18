@@ -14,7 +14,7 @@ LOOKBACK=20
 BALANCE=100000
 
 
-CMD="python .bollinger-events-orders.py $START $END $LOOKBACK && python ../hw4/marketsim.py $BALANCE "orders.csv" values.csv &&  python ../hw4/analyze.py values.csv \$SPX"
+CMD="python .bollinger-events-orders.py $START $END $LOOKBACK && python ../hw3/marketsim.py $BALANCE "orders.csv" values.csv &&  python ../hw3/analyze.py values.csv \$SPX"
 echo $CMD
 
-python ./bollinger-events-orders.py $START $END $LOOKBACK && python ../hw4/marketsim.py $BALANCE "orders.csv" values.csv &&  python ../hw4/analyze.py values.csv \$SPX
+python ./bollinger-events-orders.py $START $END $LOOKBACK && python ../hw3/marketsim.py $BALANCE "orders.csv" values.csv &&  python ../hw3/analyze.py values.csv \$SPX
