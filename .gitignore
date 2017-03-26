@@ -7,7 +7,6 @@ quiz
 reading
 orders.csv
 values.csv
-*.pdf
 setup
 setup.sh
 orders*.csv
